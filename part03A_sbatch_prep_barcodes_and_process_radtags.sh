@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --account=hologenomics         # Project Account
 #SBATCH --partition=hologenomics 
-#SBATCH --mem 1G
+#SBATCH --mem 2G
 #SBATCH -c 2
-#SBATCH -t 1:00:00
+#SBATCH -t 6:00:00
 #SBATCH -J 03A_prp_barcode_prc_radtags
 #SBATCH -o stdout_03A_prp_barcode.txt
 #SBATCH -e stderr_03A_prp_barcode.txt
@@ -67,6 +67,7 @@ mv "${WD}"/"${barcode_index_file}" "${WD}"/03_stacks/03a_barcodes/.
 
 # Then start demultiplexing
 # As described under section 4.1.1.1. here: https://catchenlab.life.illinois.edu/stacks/manual/#prun
+# This should equal section 4.1.3 in this website
 #
 process_radtags --inline_null -p ./"${raw}"/ -o ./"${samples}"/ -b ./"${barcodes}"/"${barcode_index_file}" \
                    -e sbfI -r -c -q

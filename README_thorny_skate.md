@@ -12,17 +12,17 @@ Then continue running part00B
 
 Make sure they fetch the files and unpacks the files
 
-The locally compress the part01 related files
+Then locally compress the part01 related files
 
-tar -zcvf part01.tar.gz part01*
+`tar -zcvf part01.tar.gz part01*`
 
-And scp transfer part01.tar.gz to the  external remote HPC server using a scp protocol
+And `scp` transfer part01.tar.gz to the  external remote HPC server using a scp protocol
 
 On the external remote HPC server 
 
 Uncompress the part01.tar.gz on the remote HPC server
 
-Then sbatch submit part01A
+Then `sbatch` submit part01A
 
 Wait for it to complete
 
@@ -40,9 +40,9 @@ You can compress the part03*
 
 with
 
-tar -zcvf part03.tar.gz part03*
+`tar -zcvf part03.tar.gz part03*`
 
-scp the 'part03.tar.gz' to the  external remote HPC server using a scp protocol
+`scp` the 'part03.tar.gz' to the  external remote HPC server using a scp protocol
 
 Decompress externally
 

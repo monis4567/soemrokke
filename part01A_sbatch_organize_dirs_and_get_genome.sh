@@ -83,18 +83,11 @@ cd "$WD"
 #https://unix.stackexchange.com/questions/369181/printing-every-nth-line-out-of-a-large-file-into-a-new-file
 #https://stackoverflow.com/questions/13778273/find-unique-lines
 # Get first 1200 lines from file
-head -1200 first1200linesUO_C1246_1.fastq > first1200linesUO_C1246_1.fastq
-grep -A1 '1:N:0:1' first1200linesUO_C1246_1.fastq | awk 'NR % 3 == 2' | cut -c-5 | sort | uniq -u > get_uniq_5_tags.txt
-# decompress genome files
-#gzip -d *.gz
-
-#ls
-# cd $WD
-# cp "${WD}"/part01B_dwnld_Amblyraja_radiata_gnm_v01.py "${WD}"/02_genome/.
+# head -1200 first1200linesUO_C1246_1.fastq > first1200linesUO_C1246_1.fastq
+# grep -A1 '1:N:0:1' first1200linesUO_C1246_1.fastq | awk 'NR % 3 == 2' | cut -c-5 | sort | uniq -u > get_uniq_5_tags.txt
 
 
-#get
-#python3 part01B_dwnld_Amblyraja_radiata_gnm_v01.py
+
 
 #wget ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/fasta/zea_mays/dna/Zea_mays.B73_RefGen_v4.dna.toplevel.fa.gz
 # gunzip Zea_mays.B73_RefGen_v4.dna.toplevel.fa.gz
