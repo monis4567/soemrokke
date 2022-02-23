@@ -10,9 +10,6 @@
 
 #load modules required
 module purge
-#module load python/v2.7.12
-#module load cutadapt/v1.11
-#module load vsearch/v2.8.0
 #module load stacks/v2.3b
 module load python/v3.6.9
 
@@ -20,7 +17,7 @@ module load python/v3.6.9
 # See more instructions here
 #https://bioinformaticsworkbook.org/dataAnalysis/VariantCalling/gbs-data-snp-calling-using-stacks.html#gsc.tab=0
 
-# And more importantly check out this website
+# also check out this website
 #https://catchenlab.life.illinois.edu/stacks/manual/#prun
 
 
@@ -88,28 +85,5 @@ cd "$WD"
 
 
 
-
-#wget ftp://ftp.gramene.org/pub/gramene/CURRENT_RELEASE/fasta/zea_mays/dna/Zea_mays.B73_RefGen_v4.dna.toplevel.fa.gz
-# gunzip Zea_mays.B73_RefGen_v4.dna.toplevel.fa.gz
-# module load bwa/v0.7.17
-# bwa index Zea_mays.B73_RefGen_v4.dna.toplevel.fa
-
- 
-
-# cd 03_stacks
-# while read line; do
-#   grep -Fw '$line' barcodes-gbs-data.tsv > a-barcodes/${line}-barcodes.txt;
-# done<../1-data/srr.ids
-
-
-# cd "${WD}"/01_data
-# esearch -db sra -query SRP009896  |\
-#   efetch --format runinfo |\
-#   cut -d , -f 1 |\
-#   awk 'NF>0' |\
-#   grep -v Run > srr.ids
-# while read line; do
-#   enaDataGet -f fastq -a $line;
-# done<srr.ids
 
 #

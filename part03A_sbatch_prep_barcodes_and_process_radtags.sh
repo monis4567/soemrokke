@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=hologenomics         # Project Account
 #SBATCH --partition=hologenomics 
-#SBATCH --mem 2G
+#SBATCH --mem 4G
 #SBATCH -c 2
 #SBATCH -t 6:00:00
 #SBATCH -J 03A_prp_barcode_prc_radtags
@@ -10,10 +10,6 @@
 
 #load modules required
 module purge
-#module load python/v2.7.12
-#module load cutadapt/v1.11
-#module load vsearch/v2.8.0
-#module load stacks/v2.3b
 module load python/v3.6.9
 module load perl/v5.32.0
 module load stacks/v2.3b
@@ -67,7 +63,7 @@ mv "${WD}"/"${barcode_index_file}" "${WD}"/03_stacks/03a_barcodes/.
 
 # Then start demultiplexing
 # As described under section 4.1.1.1. here: https://catchenlab.life.illinois.edu/stacks/manual/#prun
-# This should equal section 4.1.3 in this website
+# This should equal section 4.1.3 
 #
 process_radtags --inline_null -p ./"${raw}"/ -o ./"${samples}"/ -b ./"${barcodes}"/"${barcode_index_file}" \
                    -e sbfI -r -c -q

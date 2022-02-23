@@ -10,9 +10,6 @@
 
 #load modules required
 module purge
-#module load python/v2.7.12
-#module load cutadapt/v1.11
-#module load vsearch/v2.8.0
 #module load stacks/v2.3b
 module load python/v3.6.9
 
