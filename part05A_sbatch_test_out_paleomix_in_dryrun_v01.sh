@@ -76,7 +76,7 @@ mv $WD/$D05/"$RWDD"/paths.txt $WD/"$D05"/paths.txt
 
 #define input 02 directory w reference genome
 D02="02_genome"
-#define file with reference genome her with a fna ending
+#define file with reference genome here with a fna ending
 REFGF="GCF_010909765.2_sAmbRad1.1.pri_genomic.fna"
 # get first part of ref genome name
 fRFGNm=$(echo $REFGF | sed 's/\(.*\)_\(.*\)_\(.*\)/\1/g')

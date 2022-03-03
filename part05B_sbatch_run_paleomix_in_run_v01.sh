@@ -38,8 +38,8 @@ D03="03_stacks"
 cd "$WD"
 # define paleomix output directory
 D05="05_paleomix_mapping"
-rm -rf "$D05" 
-mkdir "$D05"
+#rm -rf "$D05" 
+#mkdir "$D05"
 # change directory
 cd "$D05"
 #Define input directories for rawdata and ref_genome 
@@ -69,7 +69,7 @@ cd "$WD"/"$D05"/
 # you can inspect the file stderr_05B_paleomix.txt
 # first before you do anything
 # if it can run then comment out the line above
-# increase the cpu usage to -c 12 and --mem_per cpu to 4000M and --max_threads to 12
+# increase the cpu usage to -c 12 and --mem_per cpu to 4000M and --max-threads to 12
 # in the SBATCH parts in the first lines above
 # and the instead activate the line here below
 paleomix bam run --max-threads 12 "$OUTyaml"
