@@ -19,3 +19,4 @@ module purge
 wget --no-check-certificate 'https://sid.erda.dk/share_redirect/Pj3MNl2bJo/UO_C1246_1.fastq.gz' .
 #https://sid.erda.dk/cgi-sid/ls.py?share_id=Pj3MNl2bJo
 #https://sid.erda.dk/share_redirect/Pj3MNl2bJo/UO_C1246_1.fastq.gz
+
