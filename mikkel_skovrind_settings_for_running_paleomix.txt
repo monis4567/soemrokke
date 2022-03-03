@@ -1,0 +1,7 @@
+#Run paleomix
+
+module load java/v1.8.0_202-jdk python/v3.6.9 R/v3.6.1 htslib samtools bwa bowtie2 AdapterRemoval mapDamage paleomix
+
+
+#xsbatch -c 20 -J ANC_belugaNu --time 14-00:00:00 --mem-per-cpu 10000 -- "paleomix bam run --max-threads 20 DLnuclearMappingANC.yaml"
+

@@ -57,13 +57,14 @@ Then start the part03A with `sbatch` on the external remote HPC server
 
 Wait for part03 to finish
 
-Then use `scp` to transfer the part04A file to the external remote HPC server using a scp protocol
 
-Then start the part04A with `sbatch` on the external remote HPC server
+Ignore part04 , and ignore part05A, and ignore part06 and part07. These parts are only needed if you stick to the 'stacks' protocol for 'de novo' assembly with having a reference genome available. As a reference genome is available for 'Amblyraja radiata', which is closely related to "Raja clavata" 
 
-This will start multiple slurm submissions of bwa that will use the indexed reference genome prepared under part02B, and align the demultiplexed sequence reads obtained from running part03A. The result is a lot of '.sam' files that ends up in the directory: 03_stacks/03c_alignments
+Instead upload part05A and part05B to the HPC server and try running paleomix first in a 'dryrun' then in an actual run - i.e. run part05A  first and check the stderr file you get, and verify it can run, and then continue by running part05B
 
-Wait for the part 04A to finish
+
+
+
 
 
 

@@ -1,0 +1,516 @@
+# -*- mode: Yaml; -*-
+# Default options.
+# Can also be specific for a set of samples, libraries, and lanes,
+# by including the "Options" hierarchy at the same level as those
+# samples, libraries, or lanes below.
+Options:
+  # Sequencing platform, see SAM/BAM reference for valid values
+  Platform: Illumina
+  # Quality offset for Phred scores, either 33 (Sanger/Illumina 1.8+)
+  # or 64 (Illumina 1.3+ / 1.5+). For Bowtie2 it is also possible to
+  # specify 'Solexa', to handle reads on the Solexa scale. This is
+  # used during adapter-trimming and sequence alignment
+  QualityOffset: 33
+
+  # Settings for trimming of reads, see AdapterRemoval man-page
+  AdapterRemoval:
+     # Set and uncomment to override defaults adapter sequences
+#     --adapter1: AGATCGGAAGAGCACACGTCTGAACTCCAGTCACNNNNNNATCTCGTATGCCGTCTTCTGCTTG
+#     --adapter2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT
+     # Some BAM pipeline defaults differ from AR defaults;
+     # To override, change these value(s):
+     --mm: 3
+     --minlength: 25
+     # Extra features enabled by default; change 'yes' to 'no' to disable
+     --collapse: yes
+     --trimns: yes
+     --trimqualities: yes
+
+  # Settings for aligners supported by the pipeline
+  Aligners:
+    # Choice of aligner software to use, either "BWA" or "Bowtie2"
+    Program: BWA
+
+    # Settings for mappings performed using BWA
+    BWA:
+      # One of "backtrack", "bwasw", or "mem"; see the BWA documentation
+      # for a description of each algorithm (defaults to 'backtrack')
+      Algorithm: mem
+      # Filter aligned reads with a mapping quality (Phred) below this value
+      MinQuality: 25
+      # Filter reads that did not map to the reference sequence
+      FilterUnmappedReads: yes
+      # May be disabled ("no") for aDNA alignments with the 'aln' algorithm.
+      # Post-mortem damage localizes to the seed region, which BWA expects to
+      # have few errors (sets "-l"). See http://pmid.us/22574660
+      UseSeed: yes
+      # Additional command-line options may be specified below. For 'backtrack' these
+      # are applied to the "bwa aln". See Bowtie2 for more examples.
+#      -n: 0.04
+
+    # Settings for mappings performed using Bowtie2
+    Bowtie2:
+      # Filter aligned reads with a mapping quality (Phred) below this value
+      MinQuality: 0
+      # Filter reads that did not map to the reference sequence
+      FilterUnmappedReads: yes
+      # Examples of how to add additional command-line options
+#      --trim5: 5
+#      --trim3: 5
+      # Note that the colon is required, even if no value is specified
+      --very-sensitive:
+      # Example of how to specify multiple values for an option
+#      --rg:
+#        - CN:SequencingCenterNameHere
+#        - DS:DescriptionOfReadGroup
+
+  # Command-line options for mapDamage; use long-form options(--length not -l):
+  mapDamage:
+    # By default, the pipeline will downsample the input to 100k hits
+    # when running mapDamage; remove to use all hits
+    --downsample: 100000
+
+  # Set to 'yes' exclude a type of trimmed reads from alignment / analysis;
+  # possible read-types reflect the output of AdapterRemoval
+  ExcludeReads:
+    # Exclude single-end reads (yes / no)?
+    Single: no
+    # Exclude non-collapsed paired-end reads (yes / no)?
+    Paired: no
+    # Exclude paired-end reads for which the mate was discarded (yes / no)?
+    Singleton: no
+    # Exclude overlapping paired-ended reads collapsed into a single sequence
+    # by AdapterRemoval (yes / no)?
+    Collapsed: no
+    # Like 'Collapsed', but only for collapsed reads truncated due to the
+    # presence of ambiguous or low quality bases at read termini (yes / no).
+    CollapsedTruncated: no
+
+  # Optional steps to perform during processing.
+  Features:
+    # If set to 'filter', PCR duplicates are removed from the output files; if set to
+    # 'mark', PCR duplicates are flagged with bit 0x400, and not removed from the
+    # output files; if set to 'no', the reads are assumed to not have been amplified.
+    PCRDuplicates: no
+    # Set to 'no' to disable mapDamage; set to 'plots' to build basic mapDamage plots;
+    # set to 'model' to build plots and post-mortem damage models; and set to 'rescale'
+    # to build plots, models, and BAMs with rescaled quality scores. All analyses are
+    # carried out per library.
+    mapDamage: plot
+    # Generate coverage information for the final BAM and for each 'RegionsOfInterest'
+    # specified in 'Prefixes' (yes / no).
+    Coverage: yes
+    # Generate histograms of number of sites with a given read-depth, from 0 to 200,
+    # for each BAM and for each 'RegionsOfInterest' specified in 'Prefixes' (yes / no).
+    Depths: yes
+    # Generate summary table for each target (yes / no)
+    Summary: yes
+
+
+# Map of prefixes by name, each having a Path, which specifies the location of the
+# BWA/Bowtie2 index, and optional regions for which additional statistics are produced.
+Prefixes:
+  # Replace 'NAME_OF_PREFIX' with name of the prefix; this name is used in summary
+  # statistics and as part of output filenames.
+  GCF_010909765.2:
+    # Replace 'PATH_TO_PREFIX' with the path to .fasta file containing the references
+    # against which reads are to be mapped. Using the same name as filename is strongly
+    # recommended (e.g. /path/to/Human_g1k_v37.fasta should be named 'Human_g1k_v37').
+    Path: /groups/hologenomics/andreasp/data/mapping/ref_genome/GCF_010909765.2_sAmbRad1.1.pri_genomic.fasta
+
+    # (Optional) Uncomment and replace 'PATH_TO_BEDFILE' with the path to a .bed file
+    # listing extra regions for which coverage / depth statistics should be calculated;
+    # if no names are specified for the BED records, results are named after the
+    # chromosome / contig. Replace 'NAME' with the desired name for these regions.
+#    RegionsOfInterest:
+#      NAME: PATH_TO_BEDFILE
+
+
+# Mapping targets are specified using the following structure. Replace 'NAME_OF_TARGET'
+# with the desired prefix for filenames.
+# NAME_OF_TARGET:
+  # Replace 'NAME_OF_SAMPLE' with the name of this sample.
+ #  NAME_OF_SAMPLE:
+    # Replace 'NAME_OF_LIBRARY' with the name of this sample.
+   #  NAME_OF_LIBRARY:
+       # Replace 'NAME_OF_LANE' with the lane name (e.g. the barcode) and replace
+       # 'PATH_WITH_WILDCARDS' with the path to the FASTQ files to be trimmed and mapped
+       # for this lane (may include wildcards).
+    #   NAME_OF_LANE: PATH_WITH_WILDCARDS
+ 
+P08713: 
+  P08713: 
+    Lane_P08713: 
+      Lib_P08713: /groups/hologenomics/andreasp/data/mapping/rawdata/P08713.fq.gz
+P08780: 
+  P08780: 
+    Lane_P08780: 
+      Lib_P08780: /groups/hologenomics/andreasp/data/mapping/rawdata/P08780.fq.gz
+P08867: 
+  P08867: 
+    Lane_P08867: 
+      Lib_P08867: /groups/hologenomics/andreasp/data/mapping/rawdata/P08867.fq.gz
+P08869: 
+  P08869: 
+    Lane_P08869: 
+      Lib_P08869: /groups/hologenomics/andreasp/data/mapping/rawdata/P08869.fq.gz
+P08870: 
+  P08870: 
+    Lane_P08870: 
+      Lib_P08870: /groups/hologenomics/andreasp/data/mapping/rawdata/P08870.fq.gz
+P08871: 
+  P08871: 
+    Lane_P08871: 
+      Lib_P08871: /groups/hologenomics/andreasp/data/mapping/rawdata/P08871.fq.gz
+P08878: 
+  P08878: 
+    Lane_P08878: 
+      Lib_P08878: /groups/hologenomics/andreasp/data/mapping/rawdata/P08878.fq.gz
+P08879: 
+  P08879: 
+    Lane_P08879: 
+      Lib_P08879: /groups/hologenomics/andreasp/data/mapping/rawdata/P08879.fq.gz
+P08899: 
+  P08899: 
+    Lane_P08899: 
+      Lib_P08899: /groups/hologenomics/andreasp/data/mapping/rawdata/P08899.fq.gz
+P08901: 
+  P08901: 
+    Lane_P08901: 
+      Lib_P08901: /groups/hologenomics/andreasp/data/mapping/rawdata/P08901.fq.gz
+P08902: 
+  P08902: 
+    Lane_P08902: 
+      Lib_P08902: /groups/hologenomics/andreasp/data/mapping/rawdata/P08902.fq.gz
+P08903: 
+  P08903: 
+    Lane_P08903: 
+      Lib_P08903: /groups/hologenomics/andreasp/data/mapping/rawdata/P08903.fq.gz
+P08905: 
+  P08905: 
+    Lane_P08905: 
+      Lib_P08905: /groups/hologenomics/andreasp/data/mapping/rawdata/P08905.fq.gz
+P08907: 
+  P08907: 
+    Lane_P08907: 
+      Lib_P08907: /groups/hologenomics/andreasp/data/mapping/rawdata/P08907.fq.gz
+P08909: 
+  P08909: 
+    Lane_P08909: 
+      Lib_P08909: /groups/hologenomics/andreasp/data/mapping/rawdata/P08909.fq.gz
+P08912: 
+  P08912: 
+    Lane_P08912: 
+      Lib_P08912: /groups/hologenomics/andreasp/data/mapping/rawdata/P08912.fq.gz
+P08913: 
+  P08913: 
+    Lane_P08913: 
+      Lib_P08913: /groups/hologenomics/andreasp/data/mapping/rawdata/P08913.fq.gz
+P08915: 
+  P08915: 
+    Lane_P08915: 
+      Lib_P08915: /groups/hologenomics/andreasp/data/mapping/rawdata/P08915.fq.gz
+P08916: 
+  P08916: 
+    Lane_P08916: 
+      Lib_P08916: /groups/hologenomics/andreasp/data/mapping/rawdata/P08916.fq.gz
+P08918: 
+  P08918: 
+    Lane_P08918: 
+      Lib_P08918: /groups/hologenomics/andreasp/data/mapping/rawdata/P08918.fq.gz
+P08919: 
+  P08919: 
+    Lane_P08919: 
+      Lib_P08919: /groups/hologenomics/andreasp/data/mapping/rawdata/P08919.fq.gz
+P08920: 
+  P08920: 
+    Lane_P08920: 
+      Lib_P08920: /groups/hologenomics/andreasp/data/mapping/rawdata/P08920.fq.gz
+P08921: 
+  P08921: 
+    Lane_P08921: 
+      Lib_P08921: /groups/hologenomics/andreasp/data/mapping/rawdata/P08921.fq.gz
+P08922: 
+  P08922: 
+    Lane_P08922: 
+      Lib_P08922: /groups/hologenomics/andreasp/data/mapping/rawdata/P08922.fq.gz
+P08923: 
+  P08923: 
+    Lane_P08923: 
+      Lib_P08923: /groups/hologenomics/andreasp/data/mapping/rawdata/P08923.fq.gz
+P08924: 
+  P08924: 
+    Lane_P08924: 
+      Lib_P08924: /groups/hologenomics/andreasp/data/mapping/rawdata/P08924.fq.gz
+P08925: 
+  P08925: 
+    Lane_P08925: 
+      Lib_P08925: /groups/hologenomics/andreasp/data/mapping/rawdata/P08925.fq.gz
+P08927: 
+  P08927: 
+    Lane_P08927: 
+      Lib_P08927: /groups/hologenomics/andreasp/data/mapping/rawdata/P08927.fq.gz
+P08928: 
+  P08928: 
+    Lane_P08928: 
+      Lib_P08928: /groups/hologenomics/andreasp/data/mapping/rawdata/P08928.fq.gz
+P08930: 
+  P08930: 
+    Lane_P08930: 
+      Lib_P08930: /groups/hologenomics/andreasp/data/mapping/rawdata/P08930.fq.gz
+P08931: 
+  P08931: 
+    Lane_P08931: 
+      Lib_P08931: /groups/hologenomics/andreasp/data/mapping/rawdata/P08931.fq.gz
+P08932: 
+  P08932: 
+    Lane_P08932: 
+      Lib_P08932: /groups/hologenomics/andreasp/data/mapping/rawdata/P08932.fq.gz
+P08933: 
+  P08933: 
+    Lane_P08933: 
+      Lib_P08933: /groups/hologenomics/andreasp/data/mapping/rawdata/P08933.fq.gz
+P08935: 
+  P08935: 
+    Lane_P08935: 
+      Lib_P08935: /groups/hologenomics/andreasp/data/mapping/rawdata/P08935.fq.gz
+P08936: 
+  P08936: 
+    Lane_P08936: 
+      Lib_P08936: /groups/hologenomics/andreasp/data/mapping/rawdata/P08936.fq.gz
+P08949: 
+  P08949: 
+    Lane_P08949: 
+      Lib_P08949: /groups/hologenomics/andreasp/data/mapping/rawdata/P08949.fq.gz
+P08950: 
+  P08950: 
+    Lane_P08950: 
+      Lib_P08950: /groups/hologenomics/andreasp/data/mapping/rawdata/P08950.fq.gz
+P08951: 
+  P08951: 
+    Lane_P08951: 
+      Lib_P08951: /groups/hologenomics/andreasp/data/mapping/rawdata/P08951.fq.gz
+P08952: 
+  P08952: 
+    Lane_P08952: 
+      Lib_P08952: /groups/hologenomics/andreasp/data/mapping/rawdata/P08952.fq.gz
+P08953: 
+  P08953: 
+    Lane_P08953: 
+      Lib_P08953: /groups/hologenomics/andreasp/data/mapping/rawdata/P08953.fq.gz
+P08955: 
+  P08955: 
+    Lane_P08955: 
+      Lib_P08955: /groups/hologenomics/andreasp/data/mapping/rawdata/P08955.fq.gz
+P08956: 
+  P08956: 
+    Lane_P08956: 
+      Lib_P08956: /groups/hologenomics/andreasp/data/mapping/rawdata/P08956.fq.gz
+P08957: 
+  P08957: 
+    Lane_P08957: 
+      Lib_P08957: /groups/hologenomics/andreasp/data/mapping/rawdata/P08957.fq.gz
+P08958: 
+  P08958: 
+    Lane_P08958: 
+      Lib_P08958: /groups/hologenomics/andreasp/data/mapping/rawdata/P08958.fq.gz
+P08960: 
+  P08960: 
+    Lane_P08960: 
+      Lib_P08960: /groups/hologenomics/andreasp/data/mapping/rawdata/P08960.fq.gz
+P08963: 
+  P08963: 
+    Lane_P08963: 
+      Lib_P08963: /groups/hologenomics/andreasp/data/mapping/rawdata/P08963.fq.gz
+P08964: 
+  P08964: 
+    Lane_P08964: 
+      Lib_P08964: /groups/hologenomics/andreasp/data/mapping/rawdata/P08964.fq.gz
+P08965: 
+  P08965: 
+    Lane_P08965: 
+      Lib_P08965: /groups/hologenomics/andreasp/data/mapping/rawdata/P08965.fq.gz
+P08967: 
+  P08967: 
+    Lane_P08967: 
+      Lib_P08967: /groups/hologenomics/andreasp/data/mapping/rawdata/P08967.fq.gz
+P08968: 
+  P08968: 
+    Lane_P08968: 
+      Lib_P08968: /groups/hologenomics/andreasp/data/mapping/rawdata/P08968.fq.gz
+P08969: 
+  P08969: 
+    Lane_P08969: 
+      Lib_P08969: /groups/hologenomics/andreasp/data/mapping/rawdata/P08969.fq.gz
+P08971: 
+  P08971: 
+    Lane_P08971: 
+      Lib_P08971: /groups/hologenomics/andreasp/data/mapping/rawdata/P08971.fq.gz
+P08972: 
+  P08972: 
+    Lane_P08972: 
+      Lib_P08972: /groups/hologenomics/andreasp/data/mapping/rawdata/P08972.fq.gz
+P08973: 
+  P08973: 
+    Lane_P08973: 
+      Lib_P08973: /groups/hologenomics/andreasp/data/mapping/rawdata/P08973.fq.gz
+P08974: 
+  P08974: 
+    Lane_P08974: 
+      Lib_P08974: /groups/hologenomics/andreasp/data/mapping/rawdata/P08974.fq.gz
+P08975: 
+  P08975: 
+    Lane_P08975: 
+      Lib_P08975: /groups/hologenomics/andreasp/data/mapping/rawdata/P08975.fq.gz
+P08980: 
+  P08980: 
+    Lane_P08980: 
+      Lib_P08980: /groups/hologenomics/andreasp/data/mapping/rawdata/P08980.fq.gz
+P08981: 
+  P08981: 
+    Lane_P08981: 
+      Lib_P08981: /groups/hologenomics/andreasp/data/mapping/rawdata/P08981.fq.gz
+P2397507: 
+  P2397507: 
+    Lane_P2397507: 
+      Lib_P2397507: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397507.fq.gz
+P2397621: 
+  P2397621: 
+    Lane_P2397621: 
+      Lib_P2397621: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397621.fq.gz
+P2397622: 
+  P2397622: 
+    Lane_P2397622: 
+      Lib_P2397622: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397622.fq.gz
+P2397623: 
+  P2397623: 
+    Lane_P2397623: 
+      Lib_P2397623: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397623.fq.gz
+P2397624: 
+  P2397624: 
+    Lane_P2397624: 
+      Lib_P2397624: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397624.fq.gz
+P2397625: 
+  P2397625: 
+    Lane_P2397625: 
+      Lib_P2397625: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397625.fq.gz
+P2397626: 
+  P2397626: 
+    Lane_P2397626: 
+      Lib_P2397626: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397626.fq.gz
+P2397627: 
+  P2397627: 
+    Lane_P2397627: 
+      Lib_P2397627: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397627.fq.gz
+P2397628: 
+  P2397628: 
+    Lane_P2397628: 
+      Lib_P2397628: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397628.fq.gz
+P2397629: 
+  P2397629: 
+    Lane_P2397629: 
+      Lib_P2397629: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397629.fq.gz
+P2397630: 
+  P2397630: 
+    Lane_P2397630: 
+      Lib_P2397630: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397630.fq.gz
+P2397631: 
+  P2397631: 
+    Lane_P2397631: 
+      Lib_P2397631: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397631.fq.gz
+P2397632: 
+  P2397632: 
+    Lane_P2397632: 
+      Lib_P2397632: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397632.fq.gz
+P2397633: 
+  P2397633: 
+    Lane_P2397633: 
+      Lib_P2397633: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397633.fq.gz
+P2397634: 
+  P2397634: 
+    Lane_P2397634: 
+      Lib_P2397634: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397634.fq.gz
+P2397635: 
+  P2397635: 
+    Lane_P2397635: 
+      Lib_P2397635: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397635.fq.gz
+P2397636: 
+  P2397636: 
+    Lane_P2397636: 
+      Lib_P2397636: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397636.fq.gz
+P2397637: 
+  P2397637: 
+    Lane_P2397637: 
+      Lib_P2397637: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397637.fq.gz
+P2397638: 
+  P2397638: 
+    Lane_P2397638: 
+      Lib_P2397638: /groups/hologenomics/andreasp/data/mapping/rawdata/P2397638.fq.gz
+SR10: 
+  SR10: 
+    Lane_SR10: 
+      Lib_SR10: /groups/hologenomics/andreasp/data/mapping/rawdata/SR10.fq.gz
+SR11: 
+  SR11: 
+    Lane_SR11: 
+      Lib_SR11: /groups/hologenomics/andreasp/data/mapping/rawdata/SR11.fq.gz
+SR12: 
+  SR12: 
+    Lane_SR12: 
+      Lib_SR12: /groups/hologenomics/andreasp/data/mapping/rawdata/SR12.fq.gz
+SR14: 
+  SR14: 
+    Lane_SR14: 
+      Lib_SR14: /groups/hologenomics/andreasp/data/mapping/rawdata/SR14.fq.gz
+SR15: 
+  SR15: 
+    Lane_SR15: 
+      Lib_SR15: /groups/hologenomics/andreasp/data/mapping/rawdata/SR15.fq.gz
+SR16: 
+  SR16: 
+    Lane_SR16: 
+      Lib_SR16: /groups/hologenomics/andreasp/data/mapping/rawdata/SR16.fq.gz
+SR17: 
+  SR17: 
+    Lane_SR17: 
+      Lib_SR17: /groups/hologenomics/andreasp/data/mapping/rawdata/SR17.fq.gz
+SR18: 
+  SR18: 
+    Lane_SR18: 
+      Lib_SR18: /groups/hologenomics/andreasp/data/mapping/rawdata/SR18.fq.gz
+SR19: 
+  SR19: 
+    Lane_SR19: 
+      Lib_SR19: /groups/hologenomics/andreasp/data/mapping/rawdata/SR19.fq.gz
+SR20: 
+  SR20: 
+    Lane_SR20: 
+      Lib_SR20: /groups/hologenomics/andreasp/data/mapping/rawdata/SR20.fq.gz
+SR22: 
+  SR22: 
+    Lane_SR22: 
+      Lib_SR22: /groups/hologenomics/andreasp/data/mapping/rawdata/SR22.fq.gz
+SR23: 
+  SR23: 
+    Lane_SR23: 
+      Lib_SR23: /groups/hologenomics/andreasp/data/mapping/rawdata/SR23.fq.gz
+SR3: 
+  SR3: 
+    Lane_SR3: 
+      Lib_SR3: /groups/hologenomics/andreasp/data/mapping/rawdata/SR3.fq.gz
+SR4: 
+  SR4: 
+    Lane_SR4: 
+      Lib_SR4: /groups/hologenomics/andreasp/data/mapping/rawdata/SR4.fq.gz
+SR5: 
+  SR5: 
+    Lane_SR5: 
+      Lib_SR5: /groups/hologenomics/andreasp/data/mapping/rawdata/SR5.fq.gz
+SR8: 
+  SR8: 
+    Lane_SR8: 
+      Lib_SR8: /groups/hologenomics/andreasp/data/mapping/rawdata/SR8.fq.gz
+SR9: 
+  SR9: 
+    Lane_SR9: 
+      Lib_SR9: /groups/hologenomics/andreasp/data/mapping/rawdata/SR9.fq.gz
