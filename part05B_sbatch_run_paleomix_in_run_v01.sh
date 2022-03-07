@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --account=hologenomics         # Project Account
 #SBATCH --partition=hologenomics 
-#SBATCH --mem 128M
+#SBATCH --mem 72G
 #SBATCH -c 12
-#SBATCH -t 1:00:00
+#SBATCH -t 6:00:00
 #SBATCH -J 05B_paleomix
 #SBATCH -o stdout_05B_paleomix.txt
 #SBATCH -e stderr_05B_paleomix.txt
@@ -45,8 +45,8 @@ cd "$D05"
 #Define input directories for rawdata and ref_genome 
 RWDD="rawdata"
 RfGnmD="ref_genome"
-mkdir "$RWDD"
-mkdir "$RfGnmD"
+# mkdir "$RWDD"
+# mkdir "$RfGnmD"
 
 #define input 02 directory w reference genome
 D02="02_genome"

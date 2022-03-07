@@ -8,6 +8,42 @@
 #SBATCH -o stdout_05A_paleomix.txt
 #SBATCH -e stderr_05A_paleomix.txt
 
+# # The overall idea is to set up the directories as sketched out below
+# soemrokke/
+# ├── 01_data
+# ├── 02_genome
+# └── 03_stacks
+# |   ├── 03a_barcodes
+# |   ├── 03b_demux
+# |   ├── 03c_alignments
+# |   ├── 03d_gstacks
+# |   └── 03e_population
+# └── 04_popmap
+# └── 05_paleomix_mapping
+# 	├── rawdata
+# 	└── ref_genome
+
+# # The 05A code will generate the directory:
+# └── 05_paleomix_mapping
+#  and then make the directories:
+# 	├── rawdata
+# 	└── ref_genome
+# # The code 05A will then copy all demultiplexed ".fq.gz" file from  
+#     ├── 03b_demux
+# # and then add them the directory: "rawdata"
+# # The code 05A will then copy the reference genome and rename the file ending from ".fna" to ".fasta" file from  
+# ├── 02_genome
+# # and place it in the directory : "ref_genome"
+# # From the ".fq.gz" files now placed in the directory: "rawdata" 
+# # The code 05A will then make a list of the 'fq.gz' files and get the sample names. This will generate a 'paths.txt' file
+# # which will be stored in: 
+# └── 05_paleomix_mapping
+# Once the modules are loaded the paleomix can be loaded and the command: 
+#   `paleomix bam makefile`
+#   can be used to make a default generic '.yaml' file that serves as a makefile for running the paleomix
+#   The part05 code then modfies this generic '.yaml' file to make it match the thorny skate data. And part05A then starts a 'dryrun' in paleomix, to check out whether the settings are correct. Inspect the part05A code for details on what is required and what the different replacement steps with the sed command are good for. Also inspect the result from the dryrun, before continuing on to runnung part05B. 
+
+
 #https://paleomix.readthedocs.io/en/stable/bam_pipeline/requirements.html
 # Check this website to see how you can get picard available in your home directory
 # you will need to run lines :

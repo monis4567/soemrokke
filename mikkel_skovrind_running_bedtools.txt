@@ -1,7 +1,0 @@
-for file in *.realigned.bam
-do
-intersectBed -abam $file -b ../prefixes_03/repeatMask_BelugaHiC.bed -v | samtools view -h - | samtools view -bSh - | samtools view -b -L ../prefixes_03/22firstscaffolds.bed - > repeat_mask_bams/${file%.*}_RM.bam
-done
-
-
-xsbatch -c 1 --mem-per-cpu 16000 -J intersect1 -- "bedtools intersect -abam Bris.Delphinapterus_leucas_ASM228892v2_HiC.bam -b /groups/hologenomics/xcl300/data/beluga_modern/prefixes_03/21_Chr_autosome.bed > repeat_mask_bams/Bris.Delphinapterus_leucas_ASM228892v2_HiC.temp6_bam"
