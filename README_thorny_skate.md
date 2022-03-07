@@ -1,42 +1,41 @@
 # code for analysis of GBS population genetic data for thorny skate in the North Sea
 
  The overall idea is to set up the directories as sketched out below
- soemrokke/
- ├── 01_data
- ├── 02_genome
- └── 03_stacks
- |   ├── 03a_barcodes
- |   ├── 03b_demux
- |   ├── 03c_alignments
- |   ├── 03d_gstacks
- |   └── 03e_population
- └── 04_popmap
- └── 05_paleomix_mapping
- 	├── rawdata
- 	└── ref_genome
+ soemrokke/<br/>
+ ├── 01_data<br/>
+ ├── 02_genome<br/>
+ └── 03_stacks<br/>
+ |   ├── 03a_barcodes<br/>
+ |   ├── 03b_demux<br/>
+ |   ├── 03c_alignments<br/>
+ |   ├── 03d_gstacks<br/>
+ |   └── 03e_population<br/>
+ └── 04_popmap<br/>
+ └── 05_paleomix_mapping<br/>
+ 	├── rawdata<br/>
+ 	└── ref_genome<br/>
 
  The part00 code will fetch the raw data, and place it in the '01_data' directory. The part01 code will organize the directories, and fetch a reference genome. The part02 code will unzip the reference genome and try to index the reference genome using bwa. After part02 the Rcode01 can be used locally to make a list of samples, and part03 can then be transferred to a remote HPC server and used for demultiplexing the raw data. The part03 code will make sure the demultiplexed results ends up in '03a_barcodes' and '03b_demux'. The part05 that uses paleomix can then fetch the reference genome from '02_genome' and can fetch the 
 
- The 05A code will generate the directory:
- └── 05_paleomix_mapping
-  and then make the directories:
- 	├── rawdata
- 	└── ref_genome
- The code 05A will then copy all demultiplexed ".fq.gz" file from  
-     ├── 03b_demux
- and then add them the directory: "rawdata"
- The code 05A will then copy the reference genome and rename the file ending from ".fna" to ".fasta" file from  
- ├── 02_genome
- and place it in the directory : "ref_genome"
-  From the ".fq.gz" files now placed in the directory: "rawdata" 
-  The code 05A will then make a list of the 'fq.gz' files and get the sample names. This will generate a 'paths.txt' file
-  which will be stored in: 
- └── 05_paleomix_mapping
-  Once the modules are loaded the paleomix can be loaded and the command: 
-  `paleomix bam makefile`
-  can be used to make a default generic '.yaml' file that serves as a makefile for running the paleomix
+ The 05A code will generate the directory:<br/>
+ └── 05_paleomix_mapping<br/>
+  and then make the directories:<br/>
+ 	├── rawdata<br/>
+ 	└── ref_genome<br/>
+ The code 05A will then copy all demultiplexed ".fq.gz" file from<br/>
+     ├── 03b_demux<br/>
+ and then add them the directory: "rawdata"<br/>
+ The code 05A will then copy the reference genome and rename the file ending from ".fna" to<br/> ".fasta" file from<br/>
+ ├── 02_genome<br/>
+ and place it in the directory : "ref_genome"<br/>
+  From the ".fq.gz" files now placed in the directory: "rawdata"<br/>
+  The code 05A will then make a list of the 'fq.gz' files and get the sample names. This will generate a 'paths.txt' file<br/>
+  which will be stored in:<br/> 
+ └── 05_paleomix_mapping<br/>
+  Once the modules are loaded the paleomix can be loaded and the command: <br/>
+  `paleomix bam makefile`<br/>
+  can be used to make a default generic '.yaml' file that serves as a makefile for running the paleomix<br/>
   The part05 code then modfies this generic '.yaml' file to make it match the thorny skate data. And part05A then starts a 'dryrun' in paleomix, to check out whether the settings are correct. Inspect the part05A code for details on what is required and what the different replacement steps with the sed command are good for. Also inspect the result from the dryrun, before continuing on to runnung part05B. 
-
 
 To get started follow the directions here below:
 Run the different code parts individually in order.
