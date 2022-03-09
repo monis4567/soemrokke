@@ -35,7 +35,7 @@ unqS <- unique(df_p02$sampleNo)
 df_p02 <- df_p02[!duplicated(df_p02[1]),]
 # Remove samples that never ended up being sequenced
 # sample "P08867" was never sequenced
-df_p02 <- df_p02[!df_p02[1]=="P08867",]
+#df_p02 <- df_p02[!df_p02[1]=="P08867",]
 # I decided to try and remove sample 'P08953' as I kept getting the error
 # 
 # Processing sample /groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks/P08953 [27 of 94]
@@ -48,14 +48,15 @@ df_p02 <- df_p02[!df_p02[1]=="P08867",]
 # When I tried running it remotely on the HPC server, so sample "P08953" is excluded here 
 # and I got the same error for 'SR23'
 # and I got the same error for 'P2397638'
-df_p02 <- df_p02[!df_p02[1]=="P08953",]
-df_p02 <- df_p02[!df_p02[1]=="SR23",]
-df_p02 <- df_p02[!df_p02[1]=="P2397638",]
+# df_p02 <- df_p02[!df_p02[1]=="P08953",]
+# df_p02 <- df_p02[!df_p02[1]=="SR23",]
+# df_p02 <- df_p02[!df_p02[1]=="P2397638",]
 
 # with the aim getting an index barcode list as described under section 
 # '4.1.2 Specifying the barcodes'
 #https://catchenlab.life.illinois.edu/stacks/manual/#prun
 outfl1 = "part06C_popmap.txt"
+outfl1 = "part07B_popmap.txt"
 # paste together path and input flie
 pthoutf01 <- paste0(wd00,"/",outfl1)
 # use tab as separator

@@ -95,7 +95,11 @@ NwNmREFGF=$(echo $REFGfasta | sed 's;.fasta;.without_unplaced_genomic_scaffold.f
 # and then use sed to also delete the very last line, that contains the pattern
 # NOTE !! This approach assumes that all unplaced genomic scaffolds are placed in the lower part of the file,
 # and that all chromosomes are placed above in the reference genome file
-cat $REFGfasta | sed '/unplaced genomic scaffold/q' | sed '$d' > $NwNmREFGF
+cat $REFGfasta | sed '/unplaced genomic scaffold/q' | \
+	# also quit when encountering a fasta header line that says 'unlocalized genomic scaffold'
+	sed '/unlocalized genomic scaffold/q' | \
+	# delete the last line of the file - i.e. the one that holds the line with the text string you searched for
+ 	sed '$d' > $NwNmREFGF
 
 # Then you also need a bed file which has the accession numbers of the individual chromosomes in
 # the reference genome file. But you only require the accession numbers for the chromosomes that have been
@@ -131,7 +135,7 @@ NL=$(wc -l tmp01_shortlisted_fai.txt | cut -f1 -d ' ')
 # you will need an equal number of '1' in a column to paste together with the other tmp files
 echo "1" | awk '{for(i=1; i<=n; i++) print}' n=$NL > tmp04_repeated_1.txt
 #paste all tmp files together
-paste tmp02_acc_nmbs.txt tmp04_repeated_1.txt tmp03_acc_start.txt tmp03_acc_ends.txt > tmp05_soemrokke.bed
+paste tmp02_acc_nmbs.txt tmp04_repeated_1.txt tmp03_acc_ends.txt > tmp05_soemrokke.bed
 
 # move the resulting bed file
 mv tmp05_soemrokke.bed $WD/$D05/$RfGnmD/$bedFLnm
