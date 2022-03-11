@@ -80,7 +80,6 @@ P2397623	Aquarium
 P2397622	Aquarium
 P2397621	Aquarium
 P08952	North_Sea
-P08879	North_Sea
 P08957	Skagerrak
 P08958	Skagerrak
 P08924	North_Sea
@@ -92,4 +91,3 @@ P08932	North_Sea
 P08933	North_Sea
 P08935	North_Sea
 P08936	North_Sea
-FGXCONTROL	NA

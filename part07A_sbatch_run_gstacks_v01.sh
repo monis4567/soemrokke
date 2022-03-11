@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --account=hologenomics         # Project Account
 #SBATCH --partition=hologenomics 
-#SBATCH --mem 128M
+#SBATCH --mem 1024M
 #SBATCH -c 1
 #SBATCH -t 1:00:00
 #SBATCH -J 07A
-#SBATCH -o stdout_07A_ref_map.txt
-#SBATCH -e stderr_07A_ref_map.txt
+#SBATCH -o stdout_07A_gstacks.txt
+#SBATCH -e stderr_07A_gstacks.txt
 
 # run ref_map.pl
 
@@ -38,6 +38,9 @@ D03e="03e_population"
 D03="03_stacks"
 # define paleomix output directory
 D05="05_paleomix_mapping"
+# define paleomix output directory
+D06="06_refgenome_mapped_bam"
+
 #Define input directories for rawdata and ref_genome 
 RWDD="rawdata"
 RfGnmD="ref_genome"
@@ -46,8 +49,44 @@ D07="07_popmaps"
 rm -rf "${WD}"/"${D07}"/
 mkdir "${WD}"/"${D07}"/
 
+rm -rf "${WD}"/"${D06}"/
+mkdir "${WD}"/"${D06}"/
+
+cd "${WD}"/"${D06}"/
+cd "${WD}"/"${D05}"/
+# make a list that holds the names of the clean bam files
+LSSMPL=$(ls *.2.clean.bam)
+#ls *.2.clean.bam | awk 'BEGIN { FS = "." } ; {print $1}'
+#make the list of samples an array you can iterate over
+declare -a SMPLARRAY=($LSSMPL)
+#iterate over samples
+for f in ${SMPLARRAY[@]}
+do
+    nf=$(echo $f | awk 'BEGIN { FS = "." } ; {print $1".bam"}')
+    cp "${WD}"/"${D05}"/$f "${WD}"/"${D06}"/$nf
+done
+
+cd "$WD"
 popmapFl="part07B_popmap.txt"
 cp "${popmapFl}" "${WD}"/"${D07}"/.
+
+cd "${WD}"/"${D06}"/
+rm FGXCONTROL*
+FGXCONTROL.bam
+cd "${WD}"/"${D03}"/"${D03d}"
+#rm catalog*
+
+# Run gstacks to build loci from the aligned paired-end data. We have instructed 
+# gstacks to remove any PCR duplicates that it finds. 
+
+# gstacks -I $src/aligned/ -M $src/popmaps/popmap --rm-pcr-duplicates -O $src/stacks/ -t 8 
+gstacks -I "${WD}"/"${D06}"/ -M "${WD}"/"${D07}"/"$popmapFl" --rm-pcr-duplicates -O "${WD}"/"${D03}"/"${D03d}"/ -t 8 
+# # Run populations. Calculate Hardy-Weinberg deviation, population statistics, f-statistics and 
+# smooth the statistics across the genome. Export several output files. 
+#populations -P $src/stacks/ -M $src/popmaps/popmap -r 0.65 --vcf --genepop --fstats --smooth --hwe -t 8
+populations -P "${WD}"/"${D03}"/"${D03d}"/ -M "${WD}"/"${D07}"/"$popmapFl" -r 0.65 --vcf --genepop --fstats --smooth --hwe -t 8
+
+
 
 
 # It is assumed that your files are named properly in the population map and on the file system. 
@@ -57,12 +96,19 @@ cp "${popmapFl}" "${WD}"/"${D07}"/.
 
 # ref_map.pl -T 8 --popmap ./popmaps/popmap -o ./stacks/ --samples ./aligned
 
- ref_map.pl -T 8 --popmap "${WD}"/"${D07}"/"${popmapFl}" -o "${WD}"/"${D03}"/"${D03e}" --samples "${WD}"/"${D05}"/
+# ref_map.pl -T 8 --popmap "${WD}"/"${D07}"/"${popmapFl}" -o "${WD}"/"${D03}"/"${D03e}" --samples "${WD}"/"${D05}"/
 
 # ref_map.pl will read the file names out of the population map and look for them in
 # the directory specified with --samples. The ref_map.pl program expects, 
 # given sample_2351 listed in the population map, to find a sample_2351.bam file
 # containing both single and paired-reads aligned to the reference genome and sorted. 
+
+# ref_map.pl will read the file names out of the population
+# map and look for them in the directory specified with --samples. 
+# The ref_map.pl program expects, given sample_2351 listed in the population map,
+#  to find a sample_2351.bam file containing both single and paired-reads aligned to the reference genome and sorted.
+
+
 
 
 #Here is an example shell script for reference-aligned data that uses shell loops to easily execute the pipeline by hand:

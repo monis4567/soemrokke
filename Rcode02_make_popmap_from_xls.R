@@ -50,8 +50,10 @@ df_p02 <- df_p02[!duplicated(df_p02[1]),]
 # and I got the same error for 'P2397638'
 # df_p02 <- df_p02[!df_p02[1]=="P08953",]
 # df_p02 <- df_p02[!df_p02[1]=="SR23",]
-# df_p02 <- df_p02[!df_p02[1]=="P2397638",]
-
+ df_p02 <- df_p02[!df_p02[1]=="P08879",]
+ df_p02 <- df_p02[!df_p02[1]=="FGXCONTROL",]
+ 
+#P08879
 # with the aim getting an index barcode list as described under section 
 # '4.1.2 Specifying the barcodes'
 #https://catchenlab.life.illinois.edu/stacks/manual/#prun

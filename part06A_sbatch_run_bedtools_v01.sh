@@ -106,10 +106,10 @@ cat $REFGfasta | sed '/unplaced genomic scaffold/q' | \
 # assembled. Which means accession numbers for the 'unplaced genomic scaffold' should be excluded
 
 # The bed file needs to look this:
-# NC_045956.1	1	112	193168416
-# NC_045957.1	1	195583132	347156831
-# NC_045958.1	1	349051615	480366747
-# NC_045959.1	1	482008299	603823035
+# NC_045956.1	1	193168416
+# NC_045957.1	1	347156831
+# NC_045958.1	1	480366747
+# NC_045959.1	1	603823035
 # ...
 
 
