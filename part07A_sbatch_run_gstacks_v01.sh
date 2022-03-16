@@ -15,12 +15,8 @@
 #https://catchenlab.life.illinois.edu/stacks/manual/#prun
 #load modules required
 module purge
-module load htslib/v1.9
-module load python/v3.6.9
-module load perl/v5.32.0
+# Loading modules 
 module load stacks/v2.3b
-module load bedtools/v2.29.0
-module load samtools
 
 WD=$(pwd)
 
@@ -52,6 +48,10 @@ mkdir "${WD}"/"${D07}"/
 rm -rf "${WD}"/"${D06}"/
 mkdir "${WD}"/"${D06}"/
 
+#Remove any previous versions of gstacks results
+cd "${WD}"/"${D03}"/"${D03d}"
+rm *
+
 cd "${WD}"/"${D06}"/
 cd "${WD}"/"${D05}"/
 # make a list that holds the names of the clean bam files
@@ -71,21 +71,33 @@ popmapFl="part07B_popmap.txt"
 cp "${popmapFl}" "${WD}"/"${D07}"/.
 
 cd "${WD}"/"${D06}"/
-rm FGXCONTROL*
-FGXCONTROL.bam
-cd "${WD}"/"${D03}"/"${D03d}"
+#rm FGXCONTROL*
+#FGXCONTROL.bam
+#cd "${WD}"/"${D03}"/"${D03d}"
 #rm catalog*
 
 # Run gstacks to build loci from the aligned paired-end data. We have instructed 
 # gstacks to remove any PCR duplicates that it finds. 
 
-# gstacks -I $src/aligned/ -M $src/popmaps/popmap --rm-pcr-duplicates -O $src/stacks/ -t 8 
-gstacks -I "${WD}"/"${D06}"/ -M "${WD}"/"${D07}"/"$popmapFl" --rm-pcr-duplicates -O "${WD}"/"${D03}"/"${D03d}"/ -t 8 
-# # Run populations. Calculate Hardy-Weinberg deviation, population statistics, f-statistics and 
-# smooth the statistics across the genome. Export several output files. 
-#populations -P $src/stacks/ -M $src/popmaps/popmap -r 0.65 --vcf --genepop --fstats --smooth --hwe -t 8
-populations -P "${WD}"/"${D03}"/"${D03d}"/ -M "${WD}"/"${D07}"/"$popmapFl" -r 0.65 --vcf --genepop --fstats --smooth --hwe -t 8
 
+# Gstacks - Processing single-end data, already alligned to a reference genome. 
+# Using 2.clean.bam files from the folder after Bedtools comparison and sorting. 
+# Clean .bam files are moved into a seperate folder where gstacks is ran, as stacks compare all files in the folder, only have the wanted files present. 
+
+
+# Running gstacks to build loci from the aligned single-end data.
+#gstacks -I /groups/hologenomics/andreasp/data/mapping/clean_clavata/ -M /groups/hologenomics/andreasp/data/mapping/clavata_popmap.txt -S .GCF_010909765.2.clean.bam -O /groups/hologenomics/andreasp/data/mapping/clavata_stacks/ -t 8
+gstacks -I "${WD}"/"${D06}"/ -M "${WD}"/"${D07}"/"$popmapFl" -O "${WD}"/"${D03}"/"${D03d}" -t 8
+
+## I: Is the input folder, where all the clean .bam files are located.
+## M: Is the path to the popmap, the popmap consists of the prefix ID with an allocating coulumn with area. In this case either NS = North Sea, SK = Skagerrak, KG = Kattegat or AQ = Aquarium.
+## O: Is the path where stacks places the output.
+## S: Is the suffix needed. Stacks assume the files to in the format "sample_number.bam".
+
+# Running populations. 
+# Calculating Hardy-Weinberg deviation, population statistics, f-statistics and # smooth the statistics across the genome. Export several output files.
+#populations -P /groups/hologenomics/andreasp/data/mapping/clavata_stacks/ -M /groups/hologenomics/andreasp/data/mapping/clavata_popmap.txt -r 0.65 --vcf --genepop --fstats --smooth --hwe -t 8
+populations -P "${WD}"/"${D03}"/"${D03d}" -M "${WD}"/"${D07}"/"$popmapFl" -r 0.65 --vcf --genepop --fstats --smooth --hwe -t 8
 
 
 

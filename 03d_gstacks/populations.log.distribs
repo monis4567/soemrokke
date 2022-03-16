@@ -1,0 +1,387 @@
+# Note: Individual distributions can be extracted using the `stacks-dist-extract` utility.
+#       e.g. `stacks-dist-extract populations.log.distribs dist_name`
+
+BEGIN batch_progress
+NC_045956.1: analyzed 19 loci; filtered 143 loci; 162 loci seen.
+    2130 genomic sites, of which 82 were covered by multiple loci (3.8%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045957.1: analyzed 9 loci; filtered 92 loci; 101 loci seen.
+    1063 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045958.1: analyzed 13 loci; filtered 102 loci; 115 loci seen.
+    1489 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045959.1: analyzed 9 loci; filtered 87 loci; 96 loci seen.
+    1033 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045960.1: analyzed 18 loci; filtered 109 loci; 127 loci seen.
+    2089 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045961.1: analyzed 7 loci; filtered 56 loci; 63 loci seen.
+    824 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045962.1: analyzed 9 loci; filtered 66 loci; 75 loci seen.
+    1040 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045963.1: analyzed 6 loci; filtered 71 loci; 77 loci seen.
+    702 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045964.1: analyzed 8 loci; filtered 75 loci; 83 loci seen.
+    963 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045965.1: analyzed 8 loci; filtered 46 loci; 54 loci seen.
+    916 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045966.1: analyzed 10 loci; filtered 38 loci; 48 loci seen.
+    1184 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045967.1: analyzed 6 loci; filtered 77 loci; 83 loci seen.
+    699 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045968.1: analyzed 2 loci; filtered 27 loci; 29 loci seen.
+    232 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045969.1: analyzed 7 loci; filtered 73 loci; 80 loci seen.
+    818 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045970.1: analyzed 5 loci; filtered 42 loci; 47 loci seen.
+    578 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045971.1: analyzed 2 loci; filtered 39 loci; 41 loci seen.
+    227 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045972.1: analyzed 6 loci; filtered 45 loci; 51 loci seen.
+    689 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045973.1: analyzed 7 loci; filtered 35 loci; 42 loci seen.
+    807 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045974.1: analyzed 8 loci; filtered 53 loci; 61 loci seen.
+    939 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045975.1: analyzed 5 loci; filtered 43 loci; 48 loci seen.
+    561 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045976.1: analyzed 5 loci; filtered 34 loci; 39 loci seen.
+    560 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045977.1: analyzed 6 loci; filtered 35 loci; 41 loci seen.
+    692 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045978.1: analyzed 7 loci; filtered 35 loci; 42 loci seen.
+    795 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045979.1: analyzed 6 loci; filtered 33 loci; 39 loci seen.
+    694 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045980.1: analyzed 3 loci; filtered 42 loci; 45 loci seen.
+    337 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045981.1: analyzed 7 loci; filtered 53 loci; 60 loci seen.
+    830 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045982.1: analyzed 3 loci; filtered 30 loci; 33 loci seen.
+    353 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045983.1: analyzed 3 loci; filtered 36 loci; 39 loci seen.
+    352 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045984.1: analyzed 5 loci; filtered 42 loci; 47 loci seen.
+    622 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045986.1: analyzed 3 loci; filtered 53 loci; 56 loci seen.
+    360 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045987.1: analyzed 4 loci; filtered 31 loci; 35 loci seen.
+    465 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045988.1: analyzed 7 loci; filtered 16 loci; 23 loci seen.
+    810 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045989.1: analyzed 4 loci; filtered 69 loci; 73 loci seen.
+    466 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045992.1: analyzed 4 loci; filtered 46 loci; 50 loci seen.
+    478 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045994.1: analyzed 2 loci; filtered 30 loci; 32 loci seen.
+    236 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+NC_045996.1: analyzed 2 loci; filtered 8 loci; 10 loci seen.
+    252 genomic sites, of which 0 were covered by multiple loci (0.0%).
+    Calculating F statistics...done.
+    Generating kernel-smoothed population statistics...done.
+END batch_progress
+
+BEGIN samples_per_loc_prefilters
+# Distribution of valid samples matched to a catalog locus prior to filtering.
+n_samples	n_loci
+0	2147
+END samples_per_loc_prefilters
+
+BEGIN missing_samples_per_loc_prefilters
+
+# Distribution of missing samples for each catalog locus prior to filtering.
+# Absent samples at locus	Count
+1	1642
+2	95
+3	36
+4	37
+5	15
+6	20
+7	5
+8	15
+9	4
+10	6
+11	5
+12	4
+13	2
+14	4
+15	1
+16	4
+17	1
+18	5
+19	4
+20	3
+21	8
+22	7
+23	3
+24	2
+25	3
+26	2
+27	3
+28	2
+29	3
+30	3
+31	5
+32	5
+33	3
+34	5
+35	4
+36	5
+37	1
+38	4
+39	5
+40	7
+41	3
+42	4
+43	7
+44	6
+45	3
+46	7
+47	8
+48	2
+49	5
+50	7
+51	2
+53	4
+54	5
+55	5
+56	3
+57	3
+58	4
+59	3
+60	3
+61	7
+62	5
+63	6
+64	2
+65	2
+66	5
+67	3
+68	2
+69	3
+70	2
+71	1
+72	3
+73	3
+74	2
+75	4
+76	4
+77	2
+78	3
+79	2
+80	1
+81	2
+82	3
+83	3
+86	1
+87	1
+88	1
+91	2
+END missing_samples_per_loc_prefilters
+
+BEGIN snps_per_loc_prefilters
+# Distribution of the number of SNPs per catalog locus prior to filtering.
+n_snps	n_loci
+0	1830
+1	54
+2	42
+3	32
+4	33
+5	41
+6	27
+7	16
+8	15
+9	11
+10	11
+11	8
+12	7
+13	7
+14	4
+15	1
+16	3
+17	3
+18	1
+20	1
+END snps_per_loc_prefilters
+
+BEGIN samples_per_loc_postfilters
+# Distribution of valid samples matched to a catalog locus after filtering.
+n_samples	n_loci
+0	235
+END samples_per_loc_postfilters
+
+BEGIN missing_samples_per_loc_postfilters
+
+# Distribution of missing samples for each catalog locus after filtering.
+# Absent samples at locus	Count
+1	4
+2	1
+3	3
+4	4
+5	1
+10	2
+11	2
+13	1
+16	2
+17	1
+18	1
+19	1
+20	1
+21	4
+22	4
+23	2
+24	1
+25	2
+26	2
+27	3
+28	1
+29	1
+30	3
+31	2
+32	3
+33	2
+34	3
+35	3
+36	5
+37	1
+38	3
+39	4
+40	7
+41	3
+42	3
+43	6
+44	5
+45	3
+46	7
+47	8
+48	1
+49	5
+50	7
+51	2
+53	4
+54	5
+55	5
+56	3
+57	3
+58	4
+59	3
+60	3
+61	7
+62	5
+63	6
+64	2
+65	2
+66	5
+67	3
+68	2
+69	3
+70	2
+71	1
+72	3
+73	3
+74	2
+75	4
+76	4
+77	2
+78	3
+79	2
+80	1
+81	2
+82	3
+83	3
+86	1
+87	1
+88	1
+91	2
+END missing_samples_per_loc_postfilters
+
+BEGIN snps_per_loc_postfilters
+# Distribution of the number of SNPs per catalog locus (after filtering).
+n_snps	n_loci
+0	27
+1	28
+2	25
+3	22
+4	21
+5	30
+6	20
+7	9
+8	11
+9	8
+10	8
+11	8
+12	4
+13	3
+14	3
+15	2
+16	4
+18	1
+20	1
+END snps_per_loc_postfilters

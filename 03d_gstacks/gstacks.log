@@ -1,0 +1,36 @@
+gstacks v2.3b, executed 2022-03-15 22:42:18
+gstacks -I /groups/hologenomics/phq599/data/soemrokke/06_refgenome_mapped_bam/ -M /groups/hologenomics/phq599/data/soemrokke/07_popmaps/part07B_popmap.txt -O /groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks -t 8
+Locus/sample distributions will be written to '/groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks/gstacks.log.distribs'.
+
+Configuration for this run:
+  Input mode: reference-based
+  Population map: '/groups/hologenomics/phq599/data/soemrokke/07_popmaps/part07B_popmap.txt'
+  Input files: 93, e.g. '/groups/hologenomics/phq599/data/soemrokke/06_refgenome_mapped_bam/P08867.bam'
+  Output to: '/groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks/'
+  Model: marukilow (var_alpha: 0.01, gt_alpha: 0.05)
+
+Reading BAM headers...
+Processing all loci...
+1K...
+2K...
+done.
+
+Read 1587266 BAM records:
+  kept 486060 primary alignments (33.2%), of which 0 reverse reads
+  skipped 732574 primary alignments with insufficient mapping qualities (50.0%)
+  skipped 245907 excessively soft-clipped primary alignments (16.8%)
+  skipped 0 unmapped reads (0.0%)
+  skipped some suboptimal (secondary/supplementary) alignment records
+
+  Per-sample stats (details in 'gstacks.log.distribs'):
+    read 17067.4 records/sample (2957-56359)
+    kept 13.8%-43.1% of these
+
+Built 2147 loci comprising 486060 forward reads and 0 matching paired-end reads; mean insert length was 0.0 (sd: nan).
+
+Genotyped 2147 loci:
+  effective per-sample coverage: mean=51.5x, stdev=17.8x, min=19.9x, max=116.4x
+  mean number of sites per locus: 113.5
+  a consistent phasing was found for 320 of out 330 (97.0%) diploid loci needing phasing
+
+gstacks is done.

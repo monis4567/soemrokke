@@ -3,7 +3,7 @@
 #SBATCH --partition=hologenomics 
 #SBATCH --mem 128M
 #SBATCH -c 1
-#SBATCH -t 1:00:00
+#SBATCH -t 72:00:00
 #SBATCH -J 01A_get_genome
 #SBATCH -o stdout_01A_get_genome.txt
 #SBATCH -e stderr_01A_get_genome.txt

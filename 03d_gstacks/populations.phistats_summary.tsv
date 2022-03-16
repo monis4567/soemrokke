@@ -1,0 +1,11 @@
+# Phi_st Means
+	North_Sea	Skagerrak	Kattegat	Aquarium
+North_Sea		0.034748	-0.119515	0.0604486
+Skagerrak			-0.0816595	0.0704731
+Kattegat				0.0620374
+
+# Fst' Means
+	North_Sea	Skagerrak	Kattegat	Aquarium
+North_Sea		0.0173072	0.0202196	0.0564503
+Skagerrak			0.126607	0.081423
+Kattegat				0.228182
