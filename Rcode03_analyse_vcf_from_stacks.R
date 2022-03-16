@@ -165,7 +165,7 @@ p <- p + scale_color_manual(values = cols)
 p <- p + geom_hline(yintercept = 0) 
 p <- p + geom_vline(xintercept = 0) 
 p <- p + theme_bw()
-p
+p01 <- p
 # DAPC
 pnw.dapc <- dapc(gl.haps, n.pca = 3, n.da = 2)
 # check if DAPC is similar to the PCA we can plot the data in a scatter plot.
@@ -205,8 +205,29 @@ p <- p + geom_bar(stat='identity')
 p <- p + scale_fill_manual(values = cols) 
 p <- p + facet_grid(~Original_Pop, scales = "free")
 p <- p + theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8))
-p
+p02 <- p
+library(patchwork)
+# see this example: https://www.datanovia.com/en/blog/ggplot-title-subtitle-and-caption/
+#caption = "Data source: ToothGrowth")
+p01t <- p01 + labs(title = "a")#,
+p02t <- p02 + labs(title = "b")#,
 
+
+pA <-  p01t +
+  p02t +
+  
+  plot_layout(nrow=2,byrow=T) + #xlab(xlabel) +
+  plot_layout(guides = "collect") +
+  plot_annotation(caption=pthinf01) #& theme(legend.position = "bottom")
+#p
+bSaveFigures=T
+#make filename to save plot to
+figname01 <- paste0("Fig01_pca_soemrokke.png")
+figname02 <- paste(wd00,"/",figname01,sep="")
+if(bSaveFigures==T){
+  ggsave(pA,file=figname02,width=210,height=297,
+         units="mm",dpi=300)
+}
 
 #
 
