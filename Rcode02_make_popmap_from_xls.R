@@ -21,12 +21,17 @@ tibl_inx01 <- readxl::read_xls(pthinf01)
 # replace spaces in names
 tibl_inx01$Species <- gsub(" ","_",tibl_inx01$Species)
 tibl_inx01$Location <- gsub(" ","_",tibl_inx01$Location)
-tibl_inx01$Species <- gsub("\\?","unknown",tibl_inx01$Species)
+tibl_inx01$Species <- gsub("\\?","unknownspc",tibl_inx01$Species)
 #unique(tibl_inx01$Species)
 #unique(tibl_inx01$Location)
 df_p01 <- as.data.frame(tibl_inx01)
-# take only column number 1 and 3
-df_p02 <- df_p01[,c(1,3)]
+# replace underscores
+df_p01[,2] <- gsub("_","",df_p01[,2])
+df_p01[,3] <- gsub("_","",df_p01[,3])
+#paste columns together
+df_p01$LocSpc <- paste(df_p01[,3],"_",df_p01[,2],sep="")
+# take only column number 1 and 4
+df_p02 <- df_p01[,c(1,4)]
 # Find the unique elements
 unqS <- unique(df_p02$sampleNo)
 # find the number of unique elements 

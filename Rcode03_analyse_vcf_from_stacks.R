@@ -44,9 +44,13 @@ snps.VCF <- read.vcfR(pthinf02)
 pop.data <- read.table("part07B_popmap.txt", sep = "\t", header = TRUE)
 colnames(pop.data) <- c("AccessID","location")
 #one row is missing , make it a vector
-P08899mss <- c("P08899","North_Sea")
+P08899mss <- c("P08899","NorthSea_Thornbackskate")
 # bind this as an extra row to the data frame
 pop.data <- rbind(pop.data,P08899mss)
+pop.data$location[pop.data$AccessID=="P08912"] <- "NorthSea_Thornbackskate"
+# use gsub to swap first and second around
+pop.data$location <- gsub("(.*)_(.*)","\\2_\\1",pop.data$location)
+
 #check for missing samples
 missingsmplh <- setdiff(colnames(haps.VCF@gt)[-1], pop.data$AccessID )
 missingsmpls <- setdiff(colnames(snps.VCF@gt)[-1], pop.data$AccessID )
@@ -113,6 +117,16 @@ tree.gl.haps <- aboot(gl.haps, tree = "upgma",
                       showtree = F, cutoff = 50, quiet = T)
 #  color the tips of the tree based on the population of origin of the samples
 cols <- brewer.pal(n = nPop(gl.haps), name = "Dark2")
+#_______________________________________________________________________________
+# cbbPalette2 <- c("black","purple","blue","green","yellowgreen",
+#                  "yellow","white")
+# colfunc <- colorRampPalette(cbbPalette2)
+# #https://stackoverflow.com/questions/13353213/gradient-of-n-colors-ranging-from-color-1-and-color-2
+# #
+# cols <- colfunc(nPop(gl.snps))
+#_______________________________________________________________________________
+
+
 plot.phylo(tree.gl.haps, cex = 0.8, font = 2, adj = 0, tip.color =  cols[pop(gl.haps)])
 nodelabels(tree.gl.haps$node.label, adj = c(1.3, -0.5), frame = "n", cex = 0.8,font = 3, xpd = TRUE)
 #legend(35,10,c("CA","OR","WA"),cols, border = FALSE, bty = "n")
@@ -136,11 +150,22 @@ node.size <- rep(2, times = nInd(gl.haps))
 names(node.size) <- indNames(gl.haps)
 vertex.attributes(haps.msn$graph)$size <- node.size
 
+
+cols <- brewer.pal(n = nPop(gl.haps), name = "Dark2")
+#_______________________________________________________________________________
+# cbbPalette2 <- c("black","purple","blue","green","yellowgreen",
+#                  "yellow","white")
+# colfunc <- colorRampPalette(cbbPalette2)
+# #https://stackoverflow.com/questions/13353213/gradient-of-n-colors-ranging-from-color-1-and-color-2
+# #
+# cols <- colfunc(nPop(gl.haps))
+#_______________________________________________________________________________
+
+
 set.seed(9)
 plot_poppr_msn(gl.haps, haps.msn , 
                palette = brewer.pal(n = nPop(gl.haps), 
                                     name = "Dark2"), gadj = 70)
-
 #Principal components analysis
 #A principal components analysis (PCA) converts the observed SNP data
 #into a set of values of linearly uncorrelated variables called principal 
@@ -237,12 +262,7 @@ if(bSaveFigures==T){
 haps.VCF <- read.vcfR(pthinf01)
 snps.VCF <- read.vcfR(pthinf02)
 
-pop.data <- read.table("part07B_popmap.txt", sep = "\t", header = TRUE)
-colnames(pop.data) <- c("AccessID","location")
-#one row is missing , make it a vector
-P08899mss <- c("P08899","North_Sea")
-# bind this as an extra row to the data frame
-pop.data <- rbind(pop.data,P08899mss)
+
 #check for missing samples
 missingsmplh <- setdiff(colnames(haps.VCF@gt)[-1], pop.data$AccessID )
 missingsmpls <- setdiff(colnames(snps.VCF@gt)[-1], pop.data$AccessID )
@@ -309,6 +329,14 @@ tree.gl.snps <- aboot(gl.snps, tree = "upgma",
                       showtree = F, cutoff = 50, quiet = T)
 #  color the tips of the tree based on the population of origin of the samples
 cols <- brewer.pal(n = nPop(gl.snps), name = "Dark2")
+#_______________________________________________________________________________
+# cbbPalette2 <- c("black","purple","blue","green","yellowgreen",
+#                  "yellow","white")
+# colfunc <- colorRampPalette(cbbPalette2)
+# #https://stackoverflow.com/questions/13353213/gradient-of-n-colors-ranging-from-color-1-and-color-2
+# #
+# cols <- colfunc(nPop(gl.snps))
+#_______________________________________________________________________________
 plot.phylo(tree.gl.snps, cex = 0.8, font = 2, adj = 0, tip.color =  cols[pop(gl.snps)])
 nodelabels(tree.gl.snps$node.label, adj = c(1.3, -0.5), frame = "n", cex = 0.8,font = 3, xpd = TRUE)
 #legend(35,10,c("CA","OR","WA"),cols, border = FALSE, bty = "n")

@@ -1,4 +1,4 @@
-gstacks v2.3b, executed 2022-03-15 22:42:18
+gstacks v2.3b, executed 2022-03-23 15:35:06
 gstacks -I /groups/hologenomics/phq599/data/soemrokke/06_refgenome_mapped_bam/ -M /groups/hologenomics/phq599/data/soemrokke/07_popmaps/part07B_popmap.txt -O /groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks -t 8
 Locus/sample distributions will be written to '/groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks/gstacks.log.distribs'.
 

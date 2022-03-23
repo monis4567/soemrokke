@@ -1,11 +1,19 @@
 # Phi_st Means
-	North_Sea	Skagerrak	Kattegat	Aquarium
-North_Sea		0.034748	-0.119515	0.0604486
-Skagerrak			-0.0816595	0.0704731
-Kattegat				0.0620374
+	NorthSea_Thornbackskate	Skagerrak_Thornbackskate	NorthSea_Blonderay	NorthSea_Spottedray	NorthSea_unknownspc	Skagerrak_Sailray	Kattegat_Thornbackskate	Aquarium_Thornbackskate
+NorthSea_Thornbackskate		0.0199017	0.542499	0.568007	0.549578	0.725326	-0.109919	0.0592873
+Skagerrak_Thornbackskate			0.496276	0.564959	0.577792	0.757778	-0.0559369	0.0688764
+NorthSea_Blonderay				0.797229	0.853332	0.880387	0.881928	0.601196
+NorthSea_Spottedray					0.378568	0.906572	0.767167	0.630864
+NorthSea_unknownspc						0.861433	0.828725	0.68622
+Skagerrak_Sailray							0.857153	0.822418
+Kattegat_Thornbackskate								0.0545167
 
 # Fst' Means
-	North_Sea	Skagerrak	Kattegat	Aquarium
-North_Sea		0.0173072	0.0202196	0.0564503
-Skagerrak			0.126607	0.081423
-Kattegat				0.228182
+	NorthSea_Thornbackskate	Skagerrak_Thornbackskate	NorthSea_Blonderay	NorthSea_Spottedray	NorthSea_unknownspc	Skagerrak_Sailray	Kattegat_Thornbackskate	Aquarium_Thornbackskate
+NorthSea_Thornbackskate		0.0271077	0.682042	0.78748	0.756524	0.86094	0.0298188	0.094301
+Skagerrak_Thornbackskate			0.69412	0.801702	0.831164	0.844934	0.129006	0.0858694
+NorthSea_Blonderay				0.836396	0.881201	0.973529	0.949412	0.751551
+NorthSea_Spottedray					0.398035	1	0.89903	0.830226
+NorthSea_unknownspc						1	0.903226	0.86835
+Skagerrak_Sailray							0.932835	0.908718
+Kattegat_Thornbackskate								0.204702

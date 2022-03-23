@@ -1,4 +1,8 @@
-	North_Sea	Skagerrak	Kattegat	Aquarium
-North_Sea		0.0365107	0.00401493	0.0154051
-Skagerrak			0.0225537	0.0493096
-Kattegat				0.103083
+	NorthSea_Thornbackskate	Skagerrak_Thornbackskate	NorthSea_Blonderay	NorthSea_Spottedray	NorthSea_unknownspc	Skagerrak_Sailray	Kattegat_Thornbackskate	Aquarium_Thornbackskate
+NorthSea_Thornbackskate		0.00655344	0.138181	0.148456	0.139343	0.279551	0.00608707	0.0165337
+Skagerrak_Thornbackskate			0.469176	0.390665	0.389382	0.576755	0.0389791	0.0434075
+NorthSea_Blonderay				0.74682	0.81883	0.627819	0.897861	0.524826
+NorthSea_Spottedray					0.312477	0.617012	0.604102	0.453084
+NorthSea_unknownspc						0.679525	0.809524	0.464363
+Skagerrak_Sailray							0.752049	0.624994
+Kattegat_Thornbackskate								0.103083

@@ -1,4 +1,4 @@
-populations v2.3b, executed 2022-03-15 22:42:24
+populations v2.3b, executed 2022-03-23 15:35:23
 populations -P /groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks -M /groups/hologenomics/phq599/data/soemrokke/07_popmaps/part07B_popmap.txt -r 0.65 --vcf --genepop --fstats --smooth --hwe -t 8
 Locus/sample distributions will be written to '/groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks/populations.log.distribs'.
 populations parameters selected:
@@ -13,20 +13,22 @@ populations parameters selected:
   Bootstrap resampling: off
 
 Parsing population map...
-The population map contained 93 samples, 4 population(s), 1 group(s).
+The population map contained 93 samples, 8 population(s), 1 group(s).
 Working on 93 samples.
-Working on 4 population(s):
-    North_Sea: P08867, P08869, P08870, P08871, P08878, P08899, P08901, P08902, P08903, P08905, P08907, P08909, P08912, P08913, P08915, P08916, 
-               P08918, P08919, P08920, P08921, P08922, P08923, P08924, P08925, P08927, P08928, P08930, P08931, P08932, P08933, P08935, P08936, 
-               P08949, P08950, P08951, P08952, P08953, P08960, P08963, P08964, P08965, P08967, P08968, P08969, P08971, P08972, P08973, P08974, 
-               P08975, P08980, P08981, P2397507
-    Skagerrak: P08780, P08955, P08956, P08957, P08958, SR10, SR11, SR12, SR14, SR15, SR16, SR17, SR18, SR19, SR20, SR22, SR23, SR3, SR4, 
-               SR5, SR8, SR9
-    Kattegat: P08713
-    Aquarium: P2397621, P2397622, P2397623, P2397624, P2397625, P2397626, P2397627, P2397628, P2397629, P2397630, P2397631, P2397632, P2397633, 
-              P2397634, P2397635, P2397636, P2397637, P2397638
+Working on 8 population(s):
+    NorthSea_Thornbackskate: P08867, P08869, P08870, P08899, P08901, P08902, P08903, P08905, P08907, P08909, P08912, P08913, P08915, P08916, P08918, P08919, 
+                             P08920, P08921, P08922, P08923, P08924, P08925, P08927, P08928, P08930, P08931, P08932, P08933, P08935, P08936, P08960, P08963, 
+                             P08964, P08965, P08967, P08968, P08969, P08971, P08972, P08973, P08974, P08975, P08980, P08981
+    Skagerrak_Thornbackskate: P08780, SR10, SR11, SR12, SR14, SR15, SR16, SR17, SR18, SR19, SR20, SR22, SR23, SR3, SR4, SR5, SR8, SR9
+    NorthSea_Blonderay: P08949, P08950, P08951, P08952
+    NorthSea_Spottedray: P08871, P08878, P08953
+    NorthSea_unknownspc: P2397507
+    Skagerrak_Sailray: P08955, P08956, P08957, P08958
+    Kattegat_Thornbackskate: P08713
+    Aquarium_Thornbackskate: P2397621, P2397622, P2397623, P2397624, P2397625, P2397626, P2397627, P2397628, P2397629, P2397630, P2397631, P2397632, P2397633, 
+                             P2397634, P2397635, P2397636, P2397637, P2397638
 Working on 1 group(s) of populations:
-    defaultgrp: North_Sea, Skagerrak, Kattegat, Aquarium
+    defaultgrp: NorthSea_Thornbackskate, Skagerrak_Thornbackskate, NorthSea_Blonderay, NorthSea_Spottedray, NorthSea_unknownspc, Skagerrak_Sailray, Kattegat_Thornbackskate, Aquarium_Thornbackskate
 
 SNPs and calls will be written in VCF format to '/groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks/populations.snps.vcf'
 Haplotypes will be written in VCF format to '/groups/hologenomics/phq599/data/soemrokke/03_stacks/03d_gstacks/populations.haps.vcf'
@@ -85,35 +87,69 @@ NC_045992.1
 NC_045994.1 
 NC_045996.1 
 
-Removed 1912 loci that did not pass sample/population constraints from 2147 loci.
-Kept 235 loci, composed of 27448 sites; 125 of those sites were filtered, 352 variant sites remained.
-    27285 genomic sites, of which 82 were covered by multiple loci (0.3%).
-Mean genotyped sites per locus: 116.23bp (stderr 0.32).
+Removed 1838 loci that did not pass sample/population constraints from 2147 loci.
+Kept 309 loci, composed of 35983 sites; 97 of those sites were filtered, 565 variant sites remained.
+    35577 genomic sites, of which 307 were covered by multiple loci (0.9%).
+Mean genotyped sites per locus: 115.84bp (stderr 0.28).
 
 Population summary statistics (more detail in populations.sumstats_summary.tsv):
-  North_Sea: 41.341 samples per locus; pi: 0.081857; all/variant/polymorphic sites: 4681/41/27; private alleles: 18
-  Skagerrak: 17.028 samples per locus; pi: 0.20625; all/variant/polymorphic sites: 14370/251/219; private alleles: 144
-  Kattegat: 1 samples per locus; pi: 0.10877; all/variant/polymorphic sites: 25165/285/31; private alleles: 2
-  Aquarium: 14.235 samples per locus; pi: 0.1351; all/variant/polymorphic sites: 19625/319/157; private alleles: 60
+  NorthSea_Thornbackskate: 34.9 samples per locus; pi: 0.064611; all/variant/polymorphic sites: 4443/40/24; private alleles: 9
+  Skagerrak_Thornbackskate: 14.093 samples per locus; pi: 0.15251; all/variant/polymorphic sites: 15779/378/210; private alleles: 68
+  NorthSea_Blonderay: 3.0993 samples per locus; pi: 0.036834; all/variant/polymorphic sites: 12445/151/11; private alleles: 26
+  NorthSea_Spottedray: 2.4316 samples per locus; pi: 0.15912; all/variant/polymorphic sites: 16489/190/51; private alleles: 24
+  NorthSea_unknownspc: 1 samples per locus; pi: 0.092537; all/variant/polymorphic sites: 25422/335/31; private alleles: 43
+  Skagerrak_Sailray: 3.1382 samples per locus; pi: 0.13584; all/variant/polymorphic sites: 10631/152/42; private alleles: 54
+  Kattegat_Thornbackskate: 1 samples per locus; pi: 0.0726; all/variant/polymorphic sites: 25141/427/31; private alleles: 9
+  Aquarium_Thornbackskate: 14.254 samples per locus; pi: 0.12174; all/variant/polymorphic sites: 19517/354/157; private alleles: 48
 
 Number of variable sites found to be significantly out of Hardy-Weinberg equilibrium (<0.05):
-  North_Sea: 16
-  Skagerrak: 183
-  Kattegat: 0
-  Aquarium: 74
+  NorthSea_Thornbackskate: 14
+  Skagerrak_Thornbackskate: 113
+  NorthSea_Blonderay: 0
+  NorthSea_Spottedray: 0
+  NorthSea_unknownspc: 0
+  Skagerrak_Sailray: 0
+  Kattegat_Thornbackskate: 0
+  Aquarium_Thornbackskate: 74
 Number of loci found to be significantly out of Hardy-Weinberg equilibrium (<0.05):
-  North_Sea: 40
-  Skagerrak: 102
-  Kattegat: 112
-  Aquarium: 123
+  NorthSea_Thornbackskate: 35
+  Skagerrak_Thornbackskate: 95
+  NorthSea_Blonderay: 60
+  NorthSea_Spottedray: 62
+  NorthSea_unknownspc: 73
+  Skagerrak_Sailray: 38
+  Kattegat_Thornbackskate: 108
+  Aquarium_Thornbackskate: 117
 (more detail in populations.sumstats.tsv and populations.hapstats.tsv)
 
 Population pair divergence statistics (more in populations.fst_summary.tsv and populations.phistats_summary.tsv):
-  North_Sea-Skagerrak: mean Fst: 0.036511; mean Phi_st: 0.034748; mean Fst': 0.017307
-  North_Sea-Kattegat: mean Fst: 0.0040149; mean Phi_st: -0.11951; mean Fst': 0.02022
-  North_Sea-Aquarium: mean Fst: 0.015405; mean Phi_st: 0.060449; mean Fst': 0.05645
-  Skagerrak-Kattegat: mean Fst: 0.022554; mean Phi_st: -0.08166; mean Fst': 0.12661
-  Skagerrak-Aquarium: mean Fst: 0.04931; mean Phi_st: 0.070473; mean Fst': 0.081423
-  Kattegat-Aquarium: mean Fst: 0.10308; mean Phi_st: 0.062037; mean Fst': 0.22818
+  NorthSea_Thornbackskate-Skagerrak_Thornbackskate: mean Fst: 0.0065534; mean Phi_st: 0.019902; mean Fst': 0.027108
+  NorthSea_Thornbackskate-NorthSea_Blonderay: mean Fst: 0.13818; mean Phi_st: 0.5425; mean Fst': 0.68204
+  NorthSea_Thornbackskate-NorthSea_Spottedray: mean Fst: 0.14846; mean Phi_st: 0.56801; mean Fst': 0.78748
+  NorthSea_Thornbackskate-NorthSea_unknownspc: mean Fst: 0.13934; mean Phi_st: 0.54958; mean Fst': 0.75652
+  NorthSea_Thornbackskate-Skagerrak_Sailray: mean Fst: 0.27955; mean Phi_st: 0.72533; mean Fst': 0.86094
+  NorthSea_Thornbackskate-Kattegat_Thornbackskate: mean Fst: 0.0060871; mean Phi_st: -0.10992; mean Fst': 0.029819
+  NorthSea_Thornbackskate-Aquarium_Thornbackskate: mean Fst: 0.016534; mean Phi_st: 0.059287; mean Fst': 0.094301
+  Skagerrak_Thornbackskate-NorthSea_Blonderay: mean Fst: 0.46918; mean Phi_st: 0.49628; mean Fst': 0.69412
+  Skagerrak_Thornbackskate-NorthSea_Spottedray: mean Fst: 0.39066; mean Phi_st: 0.56496; mean Fst': 0.8017
+  Skagerrak_Thornbackskate-NorthSea_unknownspc: mean Fst: 0.38938; mean Phi_st: 0.57779; mean Fst': 0.83116
+  Skagerrak_Thornbackskate-Skagerrak_Sailray: mean Fst: 0.57675; mean Phi_st: 0.75778; mean Fst': 0.84493
+  Skagerrak_Thornbackskate-Kattegat_Thornbackskate: mean Fst: 0.038979; mean Phi_st: -0.055937; mean Fst': 0.12901
+  Skagerrak_Thornbackskate-Aquarium_Thornbackskate: mean Fst: 0.043408; mean Phi_st: 0.068876; mean Fst': 0.085869
+  NorthSea_Blonderay-NorthSea_Spottedray: mean Fst: 0.74682; mean Phi_st: 0.79723; mean Fst': 0.8364
+  NorthSea_Blonderay-NorthSea_unknownspc: mean Fst: 0.81883; mean Phi_st: 0.85333; mean Fst': 0.8812
+  NorthSea_Blonderay-Skagerrak_Sailray: mean Fst: 0.62782; mean Phi_st: 0.88039; mean Fst': 0.97353
+  NorthSea_Blonderay-Kattegat_Thornbackskate: mean Fst: 0.89786; mean Phi_st: 0.88193; mean Fst': 0.94941
+  NorthSea_Blonderay-Aquarium_Thornbackskate: mean Fst: 0.52483; mean Phi_st: 0.6012; mean Fst': 0.75155
+  NorthSea_Spottedray-NorthSea_unknownspc: mean Fst: 0.31248; mean Phi_st: 0.37857; mean Fst': 0.39803
+  NorthSea_Spottedray-Skagerrak_Sailray: mean Fst: 0.61701; mean Phi_st: 0.90657; mean Fst': 1
+  NorthSea_Spottedray-Kattegat_Thornbackskate: mean Fst: 0.6041; mean Phi_st: 0.76717; mean Fst': 0.89903
+  NorthSea_Spottedray-Aquarium_Thornbackskate: mean Fst: 0.45308; mean Phi_st: 0.63086; mean Fst': 0.83023
+  NorthSea_unknownspc-Skagerrak_Sailray: mean Fst: 0.67953; mean Phi_st: 0.86143; mean Fst': 1
+  NorthSea_unknownspc-Kattegat_Thornbackskate: mean Fst: 0.80952; mean Phi_st: 0.82873; mean Fst': 0.90323
+  NorthSea_unknownspc-Aquarium_Thornbackskate: mean Fst: 0.46436; mean Phi_st: 0.68622; mean Fst': 0.86835
+  Skagerrak_Sailray-Kattegat_Thornbackskate: mean Fst: 0.75205; mean Phi_st: 0.85715; mean Fst': 0.93283
+  Skagerrak_Sailray-Aquarium_Thornbackskate: mean Fst: 0.62499; mean Phi_st: 0.82242; mean Fst': 0.90872
+  Kattegat_Thornbackskate-Aquarium_Thornbackskate: mean Fst: 0.10308; mean Phi_st: 0.054517; mean Fst': 0.2047
 
 Populations is done.
